@@ -1,0 +1,29 @@
+{
+  "name": "anusha-project",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "backend": "*",
+    "eslint": "^8",
+    "frontend": "*",
+    "prettier": "^3.2.5",
+    "turbo": "latest",
+    "typescript": "^5.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@9.8.1",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}
