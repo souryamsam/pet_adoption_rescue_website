@@ -11,7 +11,6 @@ export const listingWrapper = css`
   }
 `;
 
-
 export const listingForm = css`
   ${middleFlex}
   flex-direction: column;
@@ -46,7 +45,7 @@ export const listingForm = css`
 
       &:focus {
         outline: none; /* Remove default outline */
-        border-color: #8bbbe9; /* Highlight on focus */
+        border-color: black; /* Highlight on focus */
       }
     }
 
@@ -63,9 +62,7 @@ export const listingForm = css`
     & > label {
       margin-bottom: 1.5rem; /* Reduce spacing between label and input */
       font-size: 1.2rem; /* Slightly smaller label font */
-      color: black; /* Lighter label color */
-     
-      
+      color: white; /* Lighter label color */
     }
   }
 
@@ -89,10 +86,10 @@ export const submitBtn = css`
   }
 `;
 export const header = css`
-margin: 10px;
-font-size: 3rem;
-font-weight: 700;
-color: black;
-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-z-index: 1;
+  margin: 10px;
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 1;
 `;

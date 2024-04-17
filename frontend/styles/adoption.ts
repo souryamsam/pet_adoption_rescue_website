@@ -32,6 +32,7 @@ export const bgImgContainer = css`
 
 export const adoptionWrapper = css`
   ${middleFlex}
+  z-index: 999;
   flex-direction: column;
   justify-content: center;
   .adoption-header {
@@ -51,13 +52,16 @@ export const adoptionWrapper = css`
     font-size: 1.2rem;
     background-color: balck;
     &:focus {
-      border-color: #8bbbe9;
+      border-color: black;
     }
   }
   & > select {
     margin-top: 1rem;
     width: 15%;
     font-size: 1rem;
+  }
+  & > h2 {
+    color: white;
   }
 `;
 
@@ -67,7 +71,7 @@ export const adoptionCard = css`
   width: 100%;
   max-width: 600px;
   padding: 20px;
-  background-color: #8bbbe9;
+  background-color: black;
   display: flex;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
@@ -77,7 +81,7 @@ export const adoptionCard = css`
   overflow: hidden;
   a {
     text-decoration: none;
-    color: inherit;
+    color: white;
   }
   @media screen and (width < 600px) {
     flex-direction: column;
@@ -89,9 +93,10 @@ export const adoptionCard = css`
 export const cardImgContainer = css`
   position: relative;
   height: 250px;
-  aspect-ratio: 1;
   overflow: hidden;
   border-radius: 10px;
+  width: 40%;
+
   img {
     height: 100%;
     width: 100%;
@@ -107,13 +112,16 @@ export const adoptionCardText = css`
   display: flex;
   flex-direction: column;
   z-index: 1;
+  width: 60%;
   span {
     text-transform: capitalize;
+    color: white;
   }
   .card-info-pair {
     .card-label {
       font-weight: 600;
       letter-spacing: 1px;
+      color: orange;
     }
   }
 `;
@@ -121,7 +129,7 @@ export const header = css`
   margin: 10px;
   font-size: 3rem;
   font-weight: 700;
-  color: black;
+  color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   z-index: 1;
 `;

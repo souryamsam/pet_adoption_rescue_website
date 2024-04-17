@@ -14,7 +14,7 @@ export default function Home() {
           </Button>
         </Link>
         <Link href="/listing">
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="primary">
             Listing
           </Button>
         </Link>
@@ -24,7 +24,7 @@ export default function Home() {
           </Button>
         </Link>
         <Link href="/health">
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="primary">
             Health
           </Button>
         </Link>
@@ -34,7 +34,7 @@ export default function Home() {
           </Button>
         </Link>
         <Link href="/petfriendly">
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="primary">
             Pet Friendly
           </Button>
         </Link>

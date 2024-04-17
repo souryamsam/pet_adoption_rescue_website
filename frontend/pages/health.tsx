@@ -1,5 +1,6 @@
 import { queryGetHealth } from "@/gql/queries";
-import { AttributesInDataContainer, Health, QueryGetHealth } from "@/gql/query-types";
+import { AttributesInDataContainer, QueryGetHealth } from "@/gql/query-types";
+import type { Health } from "@/gql/query-types";
 import {
   adoptionCard,
   adoptionCardText,
@@ -13,8 +14,10 @@ import { useQuery } from "@apollo/client";
 import Image from "next/image";
 import { useState } from "react";
 
-const dataAttributeHelper = (input: AttributesInDataContainer<any>, key: string) =>
-  input.data.attributes?.[key] as string;
+const dataAttributeHelper = (
+  input: AttributesInDataContainer<any>,
+  key: string
+) => input.data.attributes?.[key] as string;
 
 export default function Health() {
   const { data } = useQuery<QueryGetHealth>(queryGetHealth);
@@ -22,24 +25,36 @@ export default function Health() {
   const pets = data?.healths?.data ?? [];
 
   const filteredPets = pets.filter((health: Health) => {
-    return health.attributes.address.toLowerCase().includes(searchQuery.toLowerCase());
+    return health.attributes.address
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
   });
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
-  const petMapper = ({ attributes = {} as never }: Health = {} as never, index: number) => {
-    const { nameofplace, address, contactnumber, picture, openhours } = attributes;
+  const petMapper = (
+    { attributes = {} as never }: Health = {} as never,
+    index: number
+  ) => {
+    const { nameofplace, address, contactnumber, picture, openhours } =
+      attributes;
     return (
       <div key={`${address}-${contactnumber}-${index}`} css={adoptionCard}>
         <div css={bgImgContainer}>
           <Image src="/images/paws.png" alt="logo" fill sizes="100%" />
         </div>
         <div css={cardImgContainer}>
-          <Image src={dataAttributeHelper(picture, "url")} alt={nameofplace} sizes="100%" fill />
+          <Image
+            src={dataAttributeHelper(picture, "url")}
+            alt={nameofplace}
+            sizes="100%"
+            fill
+          />
         </div>
         <div css={adoptionCardText}>
           <div className="card-info-pair">
-            <span className="card-label"> Name </span> <span>{nameofplace}</span>
+            <span className="card-label"> Name </span>{" "}
+            <span>{nameofplace}</span>
           </div>
           <a
             target="_blank"
@@ -64,8 +79,17 @@ export default function Health() {
   return (
     <section className="page-wrapper" css={adoptionWrapper}>
       <h1 css={header}> Health - Pet Clinics and Hospitals</h1>
-      <input type="text" placeholder="Search by location" value={searchQuery} onChange={handleSearchChange} />
-      <div css={adoptionGrid}>{filteredPets?.length ?? 0 > 0 ? filteredPets.map(petMapper) : "Loading..."}</div>
+      <input
+        type="text"
+        placeholder="Search by location"
+        value={searchQuery}
+        onChange={handleSearchChange}
+      />
+      <div css={adoptionGrid}>
+        {filteredPets?.length ?? 0 > 0
+          ? filteredPets.map(petMapper)
+          : "Loading..."}
+      </div>
       {/* <div css={adoptionGrid}>{pets?.length ?? 0 > 0 ? pets.map(petMapper) : "Loading..."}</div> */}
     </section>
   );

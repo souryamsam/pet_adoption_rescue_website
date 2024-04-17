@@ -1,5 +1,10 @@
 import { queryGetProducts } from "@/gql/queries";
-import { AttributesInDataContainer, Health, Products, QueryGetProducts } from "@/gql/query-types";
+import {
+  AttributesInDataContainer,
+  Health,
+  Products,
+  QueryGetProducts
+} from "@/gql/query-types";
 import {
   adoptionCard,
   adoptionCardText,
@@ -13,8 +18,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const dataAttributeHelper = (input: AttributesInDataContainer<any>, key: string) =>
-  input.data.attributes?.[key] as string;
+const dataAttributeHelper = (
+  input: AttributesInDataContainer<any>,
+  key: string
+) => input.data.attributes?.[key] as string;
 
 export default function Product() {
   const { query } = useRouter();
@@ -23,8 +30,12 @@ export default function Product() {
   });
   console.log(data);
   const pets = data?.products?.data ?? [];
-  const petMapper = ({ attributes = {} as never }: Products = {} as never, index: number) => {
-    const { name, price, pictures, link, species, product_category } = attributes;
+  const petMapper = (
+    { attributes = {} as never }: Products = {} as never,
+    index: number
+  ) => {
+    const { name, price, pictures, link, species, product_category } =
+      attributes;
     console.log(pictures);
     return (
       <div key={`${name}-${price}-${index}`} css={adoptionCard}>
@@ -32,7 +43,13 @@ export default function Product() {
           <Image src="/images/paws.png" alt="logo" fill sizes="100%" />
         </div>
         <div css={cardImgContainer}>
-          <Image src={dataAttributeHelper(pictures, "url")} alt={name} sizes="100%" fill priority />
+          <Image
+            src={dataAttributeHelper(pictures, "url")}
+            alt={name}
+            sizes="100%"
+            fill
+            priority
+          />
         </div>
         <div css={adoptionCardText}>
           <div className="card-info-pair">
@@ -60,8 +77,12 @@ export default function Product() {
   };
   return (
     <section className="page-wrapper" css={adoptionWrapper}>
-      <h1 className="adoption-header">Shop</h1>
-      <div css={adoptionGrid}>{loading ? "Loading..." : pets.map(petMapper)}</div>
+      <h1 className="adoption-header" css={{ color: "white" }}>
+        Shop
+      </h1>
+      <div css={adoptionGrid}>
+        {loading ? "Loading..." : pets.map(petMapper)}
+      </div>
     </section>
   );
 }

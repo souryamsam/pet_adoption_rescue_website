@@ -1,17 +1,18 @@
 import { css } from "@emotion/react";
 
 export const headerCss = css`
-  --header-col: #8bbbe9;
+  --header-col: black;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5vh 5%;
+  padding: 0 5%;
+  height: var(--header-height);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 2;
-  background-color: #faf3eb;
+  background-color: black;
   box-shadow: 0 -0.25rem 2rem var(--header-col);
 `;
 
@@ -49,7 +50,7 @@ export const hamburgerCss = css`
   .hamburger-lines {
     width: 100%;
     height: var(--hamburger-line-height);
-    background-color: var(--header-col);
+    background-color: orange;
     border-radius: 1em;
     transition: all 0.3s ease;
     transform-origin: center;
@@ -83,7 +84,7 @@ export const navCss = css`
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
   a {
-    color: black;
+    color: white;
     text-decoration: none;
     font-size: 1.4rem;
     transition: all 0.3s ease;
