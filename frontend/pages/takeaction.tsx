@@ -1,10 +1,18 @@
-import { listingForm, listingWrapper, submitBtn,header} from "@/styles/takeaction";
+import {
+  listingForm,
+  listingWrapper,
+  submitBtn,
+  header
+} from "@/styles/takeaction";
 import axios from "axios";
 import { FilePond } from "react-filepond";
 import { useRef, useState } from "react";
 import { nanoid } from "nanoid/non-secure";
 import { useMutation } from "@apollo/client";
-import { DataMutationUploadNewFile, VariablesMutationUploadNewFile } from "@/gql/mutation-types";
+import {
+  DataMutationUploadNewFile,
+  VariablesMutationUploadNewFile
+} from "@/gql/mutation-types";
 import { mutationUploadFile } from "@/gql/mutations";
 
 export default function TakeAction() {
@@ -16,7 +24,10 @@ export default function TakeAction() {
     email: "",
     desc: ""
   });
-  const [uploadImg] = useMutation<DataMutationUploadNewFile, VariablesMutationUploadNewFile>(mutationUploadFile);
+  const [uploadImg] = useMutation<
+    DataMutationUploadNewFile,
+    VariablesMutationUploadNewFile
+  >(mutationUploadFile);
   const imgRef = useRef<File | null>(null);
   const filePondRef = useRef<FilePond>(null);
   const handleChange = (e: any) => {
@@ -53,7 +64,10 @@ export default function TakeAction() {
     }
     uploadImg({ variables: { file: imgRef.current } }).then((res) => {
       axios
-        .post("/api/takeAction", { ...details, img: res?.data?.upload?.data?.attributes?.url ?? "" })
+        .post("/api/takeAction", {
+          ...details,
+          img: res?.data?.upload?.data?.attributes?.url ?? ""
+        })
         .then((res) => console.log(res));
     });
     console.log("Form submitted:");
@@ -67,60 +81,48 @@ export default function TakeAction() {
     <section className="page-wrapper" css={listingWrapper}>
       <span css={header}> TAKE ACTION </span>
       <form onSubmit={handleSubmit} css={listingForm}>
-      <div className="input-container">
-        <label>
-          Name:
+        <div className="input-container"></div>
+        <div className="input-container">
+          <label htmlFor="Name">Name:</label>
           <input
-            required id="name"  
-            type="text" 
-            name="name" 
-            onChange={handleChange} 
-            
+            required
+            id="name"
+            type="text"
+            name="name"
+            onChange={handleChange}
           />
-        </label>
         </div>
         <div className="input-container">
-        <label>
-          Email:
+          <label>Email:</label>
           <input
-            required id="email"  
-            type="email" 
-            name="email" 
-            onChange={handleChange} 
-         
+            required
+            id="email"
+            type="email"
+            name="email"
+            onChange={handleChange}
           />
-        </label>
         </div>
         <div className="input-container">
-        <label>
-          Address:
+          <label>Address:</label>
           <input
-            required id="address"  
-            type="text" 
-            name="addressani" 
-            onChange={handleChange} 
-           
+            required
+            id="address"
+            type="text"
+            name="addressani"
+            onChange={handleChange}
           />
-        </label>
         </div>
         <div className="input-container">
-        <label>
-          Description:
-          <textarea 
-            required id="desc" 
-            name="desc" 
-            onChange={handleChange} 
-           
-          />
-        </label>
+          <label>Description:</label>
+          <input required id="desc" name="desc" onChange={handleChange} />
         </div>
         <FilePond
           allowMultiple={false}
-          css={{ 
-            width: "100%", 
-            maxWidth: "550px", 
-            marginTop: "10px", 
-            boxShadow: "0 0 2rem 0 rgba(0,0,0,0.25)" 
+          css={{
+            width: "100%",
+            maxWidth: "550px",
+            marginTop: "10px",
+            boxShadow: "0 0 2rem 0 rgba(0,0,0,0.25)"
           }}
           ref={filePondRef}
           acceptedFileTypes={["image/*"]}
@@ -131,8 +133,14 @@ export default function TakeAction() {
               console.error(err);
             } else {
               const fun = async () => {
-                const blob = new Blob([await file.arrayBuffer()], { type: file.type });
-                const fileNew = new File([blob], `${nanoid()}.${fileExtension}`, { type: file.type });
+                const blob = new Blob([await file.arrayBuffer()], {
+                  type: file.type
+                });
+                const fileNew = new File(
+                  [blob],
+                  `${nanoid()}.${fileExtension}`,
+                  { type: file.type }
+                );
                 imgRef.current = fileNew;
               };
               fun();
@@ -148,15 +156,14 @@ export default function TakeAction() {
           labelIdle={`Drag & Drop your Pet's image or <span class="filepond--label-action"> Browse </span>`}
         />
         <div className="input-container">
-        <label>
-          Phone Number:
+          <label>Phone Number:</label>
           <input
-            required id="tel"  
-            type="tel" 
-            name="phonenumber" 
-            onChange={handleChange} 
+            required
+            id="tel"
+            type="tel"
+            name="phonenumber"
+            onChange={handleChange}
           />
-        </label>
         </div>
         <button type="submit" css={submitBtn}>
           Submit
@@ -165,3 +172,4 @@ export default function TakeAction() {
     </section>
   );
 }
+
