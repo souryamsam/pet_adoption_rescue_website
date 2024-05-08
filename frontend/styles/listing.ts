@@ -94,11 +94,14 @@ export const submitBtn = css`
   padding: 10px 25px;
   border-radius: 500px;
   border: none;
-  background-color: black;
-  color: black;
+  background-color: green;
+  color: white;
   cursor: pointer;
   font-size: 1.2rem;
   margin: 2vh 0;
+  &:hover {
+    background-color: #2e602e; /* Slightly darker green on hover */
+  }
 `;
 export const header = css`
   margin: 10px;
